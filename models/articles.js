@@ -8,7 +8,7 @@ const getArticleById = (id) => {
   return articles.find((ar) => ar.id === id);
 };
 
-const getArticlesByTitle = (title) => {
+const getArticleByTitle = (title) => {
   return articles.find((ar) => ar.title === title);
 };
 
@@ -35,7 +35,7 @@ const deleteArticle = (id) => {
 module.exports = {
   getArticles,
   getArticleById,
-  getArticlesByTitle,
+  getArticleByTitle,
   addArticle,
   updateArticle,
   deleteArticle,
