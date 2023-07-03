@@ -44,26 +44,26 @@ const getArticles = () => {
 };
 
 const getArticleById = (id) => {
-    fs.readFile("database.json", "utf8", (err, data) => {
-        if (err) {
-          console.log(err);
-          return;
-        }
-        let parsedData = JSON.parse(data);
-        articles = parsedData.blog_posts;
-      });
+  fs.readFile("database.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    let parsedData = JSON.parse(data);
+    articles = parsedData.blog_posts;
+  });
   return articles.find((ar) => ar.id === id);
 };
 
 const getArticleByTitle = (title) => {
-    fs.readFile("database.json", "utf8", (err, data) => {
-        if (err) {
-          console.log(err);
-          return;
-        }
-        let parsedData = JSON.parse(data);
-        articles = parsedData.blog_posts;
-      });
+  fs.readFile("database.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    let parsedData = JSON.parse(data);
+    articles = parsedData.blog_posts;
+  });
   return articles.find((ar) => ar.title === title);
 };
 

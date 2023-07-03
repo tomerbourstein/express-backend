@@ -7,7 +7,8 @@ const getArticles = asyncHandler(async (req, res) => {
 });
 
 const getArticleById = asyncHandler(async (req, res) => {
-  const article = articleModel.getArticleById(req.body.id);
+  const parsedId = parseInt(req.query.id);
+  const article = articleModel.getArticleById(parsedId);
   if (!article) {
     res.status(404).json({ message: "Article not found." });
   }

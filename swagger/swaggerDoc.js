@@ -21,7 +21,24 @@
  *           type: string
  *     responses:
  *       200:
- *         description: The article
+ *         description: The article title
+ *       404:
+ *         description: The article was not found
+ */
+/**
+ * @swagger
+ * /articles/id:
+ *   get:
+ *     summary: Returns an article by its id
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: The article id
  *       404:
  *         description: The article was not found
  */
