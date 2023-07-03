@@ -1,27 +1,21 @@
-{
-  "users": [
-    { "uid": 0, "email": "user1@example.com", "password": "password1" },
-    { "uid": 1, "email": "user2@example.com", "password": "password2" },
-    { "uid": 2, "email": "user3@example.com", "password": "password3" }
-  ],
-  "blog_posts": [
-    {
-      "id": 0,
-      "author_uid": 0,
-      "title": "The Importance of Exercise",
-      "content": "Regular exercise is crucial for maintaining a healthy lifestyle. It improves cardiovascular health, boosts mood, and increases energy levels."
-    },
-    {
-      "id": 1,
-      "author_uid": 1,
-      "title": "Exploring New Destinations",
-      "content": "Traveling to new places broadens our horizons, exposes us to different cultures, and creates lasting memories."
-    },
-    {
-      "id": 2,
-      "author_uid": 0,
-      "title": "The Benefits of Mindfulness",
-      "content": "Practicing mindfulness helps reduce stress, improve focus, and enhance overall well-being. Learn how to incorporate mindfulness into your daily routine."
-    }
-  ]
-}
+[
+  {
+    "id": 0,
+    "author_uid": 0,
+    "title": "The Importance of Exercise",
+    "content": "Regular exercise is crucial for maintaining a healthy lifestyle. It improves cardiovascular health, boosts mood, and increases energy levels."
+  },
+  {
+    "id": 1,
+    "author_uid": 1,
+    "title": "Exploring New Destinations",
+    "content": "Traveling to new places broadens our horizons, exposes us to different cultures, and creates lasting memories."
+  },
+  {
+    "id": 2,
+    "author_uid": 0,
+    "title": "The Benefits of Mindfulness",
+    "content": "Practicing mindfulness helps reduce stress, improve focus, and enhance overall well-being. Learn how to incorporate mindfulness into your daily routine."
+  },
+  { "id": 4, "title": "string", "content": "string" }
+]

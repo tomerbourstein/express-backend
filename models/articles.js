@@ -31,6 +31,7 @@ function writeDatabase(data, callback) {
   });
 }
 
+// Get a list of articles
 const getArticles = () => {
   fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
@@ -43,6 +44,7 @@ const getArticles = () => {
   return articles;
 };
 
+// Get article by id
 const getArticleById = (id) => {
   fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
@@ -55,6 +57,7 @@ const getArticleById = (id) => {
   return articles.find((ar) => ar.id === id);
 };
 
+// Get article by title
 const getArticleByTitle = (title) => {
   fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
@@ -68,8 +71,25 @@ const getArticleByTitle = (title) => {
 };
 
 const addArticle = (newArticle) => {
-  newArticle.id = articles.length + 1;
-  articles.push(newArticle);
+  fs.readFile("database.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    let parsedData = JSON.parse(data);
+    articles = parsedData.blog_posts;
+    newArticle = { id: articles.length + 1, ...newArticle };
+    newArticle.id = articles.length + 1;
+    articles.push(newArticle);
+    console.log(articles);
+    fs.writeFile("database.json", JSON.stringify(articles), "utf8", (err) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+    });
+  });
+
   return newArticle;
 };
 

@@ -1,11 +1,13 @@
 const asyncHandler = require("express-async-handler");
 const articleModel = require("../models/articles");
 
+// Get all articles
 const getArticles = asyncHandler(async (req, res) => {
   const articles = articleModel.getArticles();
   res.json(articles);
 });
 
+// Get article by id
 const getArticleById = asyncHandler(async (req, res) => {
   const parsedId = parseInt(req.query.id);
   const article = articleModel.getArticleById(parsedId);
@@ -15,6 +17,7 @@ const getArticleById = asyncHandler(async (req, res) => {
   res.json(article);
 });
 
+// Get article by title
 const getArticleByTitle = asyncHandler(async (req, res) => {
   const article = articleModel.getArticleByTitle(req.query.title);
   if (!article) {
@@ -23,6 +26,7 @@ const getArticleByTitle = asyncHandler(async (req, res) => {
   res.json(article);
 });
 
+// Post article
 const addArticle = asyncHandler(async (req, res) => {
   const newArticle = articleModel.addArticle(req.body);
   res.status(201).json(newArticle);
