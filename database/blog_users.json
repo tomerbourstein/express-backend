@@ -1,0 +1,29 @@
+{
+  "blog_users": [
+    {
+      "uid": 0,
+      "email": "john.doe@example.com",
+      "password": "pa$$w0rd1"
+    },
+    {
+      "uid": 1,
+      "email": "jane.smith@example.com",
+      "password": "securePassword123"
+    },
+    {
+      "uid": 2,
+      "email": "alex.brown@example.com",
+      "password": "P@$$w0rd!"
+    },
+    {
+      "uid": 3,
+      "email": "emma.wilson@example.com",
+      "password": "StrongPassword"
+    },
+    {
+      "uid": 4,
+      "email": "michael.davis@example.com",
+      "password": "SecretPass123"
+    }
+  ]
+}

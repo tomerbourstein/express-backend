@@ -1,8 +1,41 @@
 /**
  * @swagger
+ * tags:
+ *   name: Article
+ *   description: The users managing API
+ * components:
+ *   schemas:
+ *     Article:
+ *       type: object
+ *       required:
+ *         - title
+ *         - content
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: The auto-generated id of the article
+ *         author_uid:
+ *           type: integer
+ *           description: The unique id of the author of the article
+ *         title:
+ *           type: string
+ *           description: The title of your article
+ *         content:
+ *           type: string
+ *           description: The content of your article
+ *       example:
+ *         id: 0
+ *         author_uid: 1
+ *         title: The New Turing Omnibus
+ *         content: In the begining there was nothing, but everything nonetheless.
+ */
+
+/**
+ * @swagger
  * /articles:
  *   get:
  *     summary: Returns the list of all articles
+ *     tags: [Article]
  *     responses:
  *       200:
  *         description: The list of the articles
@@ -13,6 +46,7 @@
  * /articles/title:
  *   get:
  *     summary: Returns an article by its title
+ *     tags: [Article]
  *     parameters:
  *       - in: query
  *         name: title
@@ -30,6 +64,7 @@
  * /articles/id:
  *   get:
  *     summary: Returns an article by its id
+ *     tags: [Article]
  *     parameters:
  *       - in: query
  *         name: id
@@ -48,6 +83,7 @@
  * /articles:
  *   post:
  *     summary: Create a new article
+ *     tags: [Article]
  *     requestBody:
  *       content:
  *         application/json:
@@ -68,6 +104,7 @@
  * /articles/{id}:
  *   put:
  *     summary: Update an existing article
+ *     tags: [Article]
  *     parameters:
  *       - in: path
  *         name: id
@@ -96,6 +133,7 @@
  * /articles/{id}:
  *   patch:
  *     summary: Partially update an existing article
+ *     tags: [Article]
  *     parameters:
  *       - in: path
  *         name: id
@@ -123,7 +161,8 @@
  * @swagger
  * /articles/{id}:
  *   delete:
- *     summary: Delete a article
+ *     summary: Delete an article
+ *     tags: [Article]
  *     parameters:
  *       - in: path
  *         name: id

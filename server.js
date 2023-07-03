@@ -4,6 +4,7 @@ const fs = require("fs");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const articlesRoutes = require("./routes/articleRoutes");
+const usersRoutes = require("./routes/userRoutes");
 const app = express();
 app.use(express.json());
 
@@ -28,6 +29,7 @@ const specs = swaggerJsdoc(options);
 app.use("/api", swaggerUi.serve, swaggerUi.setup(specs));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/articles", articlesRoutes);
+app.use("/users", usersRoutes);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
