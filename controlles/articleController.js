@@ -1,13 +1,13 @@
 const asyncHandler = require("express-async-handler");
 const articleModel = require("../models/articles");
 
-// Get all articles
+// Get a list of articles (GET)
 const getArticles = asyncHandler(async (req, res) => {
   const articles = articleModel.getArticles();
   res.json(articles);
 });
 
-// Get article by id
+// Get article by id (GET)
 const getArticleById = asyncHandler(async (req, res) => {
   const parsedId = parseInt(req.query.id);
   const article = articleModel.getArticleById(parsedId);
@@ -17,7 +17,7 @@ const getArticleById = asyncHandler(async (req, res) => {
   res.json(article);
 });
 
-// Get article by title
+// Get article by title (GET)
 const getArticleByTitle = asyncHandler(async (req, res) => {
   const article = articleModel.getArticleByTitle(req.query.title);
   if (!article) {
@@ -26,18 +26,18 @@ const getArticleByTitle = asyncHandler(async (req, res) => {
   res.json(article);
 });
 
-// Post article
+// Post new article (POST)
 const addArticle = asyncHandler(async (req, res) => {
   const newArticle = articleModel.addArticle(req.body);
   res.status(201).json(newArticle);
 });
 
+// Update partially or entirely an existing article (PATCH or PUT)
 const updateArticle = asyncHandler(async (req, res) => {
   const updatedArticle = articleModel.updateArticle(
     parseInt(req.params.id),
     req.body
   );
-  //   console.log(updatedArticle);
   if (!updatedArticle) {
     res.status(404).json({ message: "Article not found." });
   }
@@ -47,6 +47,7 @@ const updateArticle = asyncHandler(async (req, res) => {
   });
 });
 
+// Delete an entire article (DELETE)
 const deleteArticle = asyncHandler(async (req, res) => {
   const deletedArticleId = articleModel.deleteArticle(parseInt(req.params.id));
   if (!deletedArticleId) {

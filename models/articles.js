@@ -2,37 +2,7 @@ const fs = require("fs");
 let articles = [];
 let updatedArticleWithId;
 
-// Read the existing data from the database.json file
-// function readDatabase(callback) {
-//   fs.readFile("database.json", "utf8", (err, data) => {
-//     if (err) {
-//       console.error(err);
-//       return callback(err);
-//     }
-//     let jsonData;
-//     try {
-//       jsonData = JSON.parse(data);
-//     } catch (parseError) {
-//       console.error(parseError);
-//       return callback(parseError);
-//     }
-//     callback(null, jsonData);
-//   });
-// }
-
-// Write the updated data back to the database.json file
-function writeDatabase(data, callback) {
-  fs.writeFile("database.json", JSON.stringify(data), "utf8", (err) => {
-    if (err) {
-      console.error(err);
-      return callback(err);
-    }
-
-    callback(null);
-  });
-}
-
-// Get a list of articles
+// Get a list of articles (GET)
 const getArticles = () => {
   fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
@@ -45,7 +15,7 @@ const getArticles = () => {
   return articles;
 };
 
-// Get article by id
+// Get article by id (GET)
 const getArticleById = (id) => {
   fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
@@ -58,7 +28,7 @@ const getArticleById = (id) => {
   return articles.find((ar) => ar.id === id);
 };
 
-// Get article by title
+// Get article by title (GET)
 const getArticleByTitle = (title) => {
   fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
@@ -71,6 +41,7 @@ const getArticleByTitle = (title) => {
   return articles.find((ar) => ar.title === title);
 };
 
+// Post new article (POST)
 const addArticle = (newArticle) => {
   fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
@@ -97,6 +68,7 @@ const addArticle = (newArticle) => {
   return newArticle;
 };
 
+// Update partially or entirely an existing article (PATCH or PUT)
 const updateArticle = (id, updatedArticle) => {
   fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
@@ -123,6 +95,7 @@ const updateArticle = (id, updatedArticle) => {
   return { id, ...updatedArticle };
 };
 
+// Delete an entire article (DELETE)
 const deleteArticle = (id) => {
   fs.readFile("database.json", "utf8", (err, data) => {
     if (err) {
