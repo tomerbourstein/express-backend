@@ -124,9 +124,28 @@ const updateArticle = (id, updatedArticle) => {
 };
 
 const deleteArticle = (id) => {
-  const index = articles.findIndex((ar) => ar.id === id);
-  if (index === -1) return null;
-  articles.splice(index, 1);
+  fs.readFile("database.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    let parsedData = JSON.parse(data);
+    articles = parsedData.blog_posts;
+    const index = articles.findIndex((ar) => ar.id === id);
+    if (index === -1) return null;
+    articles.splice(index, 1);
+
+    fs.writeFile(
+      "database.json",
+      JSON.stringify({ blog_posts: articles }),
+      "utf8",
+      (err) => {
+        if (err) console.log(err);
+        return;
+      }
+    );
+  });
+
   return id;
 };
 

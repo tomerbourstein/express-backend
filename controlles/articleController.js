@@ -37,11 +37,14 @@ const updateArticle = asyncHandler(async (req, res) => {
     parseInt(req.params.id),
     req.body
   );
-//   console.log(updatedArticle);
+  //   console.log(updatedArticle);
   if (!updatedArticle) {
     res.status(404).json({ message: "Article not found." });
   }
-  res.json(updatedArticle);
+  res.json({
+    message: `Article id:${req.params.id} successfully updated`,
+    updatedArticle,
+  });
 });
 
 const deleteArticle = asyncHandler(async (req, res) => {
@@ -49,7 +52,7 @@ const deleteArticle = asyncHandler(async (req, res) => {
   if (!deletedArticleId) {
     res.status(404).json({ message: "Article not found." });
   }
-  res.json({ message: `Article ${deletedArticleId} deleted` });
+  res.json({ message: `Article id:${deletedArticleId} deleted` });
 });
 
 module.exports = {
