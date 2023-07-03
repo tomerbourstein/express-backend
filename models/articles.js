@@ -1,5 +1,6 @@
 const fs = require("fs");
 let articles = [];
+let updatedArticleWithId;
 
 // Read the existing data from the database.json file
 // function readDatabase(callback) {
@@ -82,22 +83,44 @@ const addArticle = (newArticle) => {
     newArticle.id = articles.length + 1;
     articles.push(newArticle);
     console.log(articles);
-    fs.writeFile("database.json", JSON.stringify(articles), "utf8", (err) => {
-      if (err) {
-        console.log(err);
+    fs.writeFile(
+      "database.json",
+      JSON.stringify({ blog_posts: articles }),
+      "utf8",
+      (err) => {
+        if (err) console.log(err);
         return;
       }
-    });
+    );
   });
 
   return newArticle;
 };
 
 const updateArticle = (id, updatedArticle) => {
-  const index = articles.findIndex((ar) => ar.id === id);
-  if (index === -1) return null;
-  articles[index] = { id, ...updateArticle };
-  return articles[index];
+  fs.readFile("database.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    let parsedData = JSON.parse(data);
+    articles = parsedData.blog_posts;
+    const index = articles.findIndex((ar) => ar.id === id);
+    if (index === -1) return null;
+    updatedArticleWithId = { id, ...updatedArticle };
+    articles[index] = updatedArticleWithId;
+
+    fs.writeFile(
+      "database.json",
+      JSON.stringify({ blog_posts: articles }),
+      "utf8",
+      (err) => {
+        if (err) console.log(err);
+        return;
+      }
+    );
+  });
+  return { id, ...updatedArticle };
 };
 
 const deleteArticle = (id) => {
