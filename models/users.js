@@ -22,7 +22,7 @@ const getUserById = (id) => {
     let parsedData = JSON.parse(data);
     users = parsedData.blog_users;
   });
-  return users.find((user) => user.id === id);
+  return users.find((user) => user.uid === id);
 };
 
 const addUser = (newUser) => {
@@ -59,7 +59,7 @@ const updateUser = (id, updatedUser) => {
     users = parsedData.blog_users;
     const index = users.findIndex((user) => user.id === id);
     if (index === -1) return null;
-    users[index] = { id, ...updateUser };
+    users[index] = { id, ...updatedUser };
 
     fs.writeFile(
       "database/blog_users.json",
@@ -75,6 +75,8 @@ const updateUser = (id, updatedUser) => {
 };
 
 const deleteUser = (id) => {
+  let foundId = id;
+
   fs.readFile("database/blog_users.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
@@ -82,21 +84,26 @@ const deleteUser = (id) => {
     }
     let parsedData = JSON.parse(data);
     users = parsedData.blog_users;
-    const index = users.findIndex((user) => user.id === id);
-    if (index === -1) return null;
-    users.splice(index, 1);
+    const index = users.findIndex((user) => user.uid === id);
+    if (index === -1) {
+      foundId = null;
+      return;
+    } else {
+      foundId = users[index].id;
+      users.splice(index, 1);
 
-    fs.writeFile(
-      "database/blog_users.json",
-      JSON.stringify({ blog_users: users }),
-      "utf8",
-      (error) => {
-        if (error) console.log(error);
-        return;
-      }
-    );
+      fs.writeFile(
+        "database/blog_users.json",
+        JSON.stringify({ blog_users: users }),
+        "utf8",
+        (error) => {
+          if (error) console.log(error);
+          return;
+        }
+      );
+    }
   });
-  return id;
+  return foundId;
 };
 
 module.exports = {

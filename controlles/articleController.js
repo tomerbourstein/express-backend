@@ -50,8 +50,10 @@ const updateArticle = asyncHandler(async (req, res) => {
 // Delete an entire article (DELETE)
 const deleteArticle = asyncHandler(async (req, res) => {
   const deletedArticleId = articleModel.deleteArticle(parseInt(req.params.id));
+  console.log(deletedArticleId);
   if (!deletedArticleId) {
     res.status(404).json({ message: "Article not found." });
+    return;
   }
   res.json({ message: `Article id:${deletedArticleId} deleted` });
 });

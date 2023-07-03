@@ -1,20 +1,21 @@
 const asyncHandler = require("express-async-handler");
 const userModel = require("../models/users");
 
-const getUsers = asyncHandler(async (res, req) => {
+const getUsers = asyncHandler(async (req, res) => {
   const users = userModel.getUsers();
-
-  res.json(users); //  remove string
+  console.log(users);
+  res.json(users);
 });
 
-const getUserById = asyncHandler(async (res, req) => {
+const getUserById = asyncHandler(async (req, res) => {
   const { id } = req.query;
   const parsedId = parseInt(id);
   const user = userModel.getUserById(parsedId);
   if (!user) {
     res.status(404).json({ message: "User not found" });
   }
-  res.json(user); // remove string
+  console.log(user);
+  res.json(user);
 });
 
 const addUser = asyncHandler(async (req, res) => {
@@ -36,17 +37,16 @@ const updateUser = asyncHandler(async (req, res) => {
     enteredUserData
   );
   if (!updatedUserData) {
-    // remove string
     res.status(404).json({ message: "User not found" });
   }
   res.status(200).json({ message: `uid:${req.params.id} has been updated` });
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
-  const { id } = req.params.id;
-  const deletedUser = userModel.deleteUser(id);
+  const uid = parseInt(req.params.id);
+  const deletedUser = userModel.deleteUser(uid);
+  console.log(uid);
   if (!deletedUser) {
-    // remove string
     res.status(404).json({ message: "User not found" });
   }
   res.status(200).json({ message: `uid${req.params.id} has been deleted` });
