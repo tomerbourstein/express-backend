@@ -15,7 +15,7 @@ const getArticleById = asyncHandler(async (req, res) => {
 });
 
 const getArticleByTitle = asyncHandler(async (req, res) => {
-  const article = articleModel.getArticleByTitle(req.body.title);
+  const article = articleModel.getArticleByTitle(req.query.title);
   if (!article) {
     res.status(404).json({ message: "Article not found." });
   }

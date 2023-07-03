@@ -29,7 +29,7 @@
 /**
  * @swagger
  * /articles:
- *   article:
+ *   post:
  *     summary: Create a new article
  *     requestBody:
  *       content:
